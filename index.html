@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Мануальная Терапия</title>
+    <!-- подключение стилей и шрифтов для работы страницы -->
+</head>
+<body id="top">
+    <!-- хедер с лого и контактами, фиксируется сверху при скролле -->
+    <header>
+        <div class="title">
+            <!-- контейнер для логотипа и контактной информации -->
+            <a href="#top" class="title-link">
+                <!-- ссылка на верх страницы с названием -->
+                <p>Мануальная Терапия</p>
+            </a>
+            <div class="contact-info">
+                <!-- блок с кнопкой и скрытым списком контактов -->
+                <button class="contact-toggle"><i class="fas fa-info-circle"></i></button>
+                <!-- кнопка для показа контактов -->
+                <div class="contact-details">
+                    <!-- скрытый блок с телефонами и соцсетями -->
+                    <a href="tel:+79885998751" class="phone-link">
+                        <img src="img/иконка телефон.png" width="28px" height="28px" alt="телефон">
+                        <span>+7 (988) 599-87-51</span>
+                    </a>
+                    <!-- ссылка на телефон для связи -->
+                    <a href="https://www.facebook.com/yourpage" class="social-icon">
+                        <img src="img/4.png" width="28px" height="28px" alt="Facebook">
+                    </a>
+                    <!-- иконка facebook для перехода -->
+                    <a href="https://www.instagram.com/yourprofile" class="social-icon">
+                        <img src="img/5.png" width="28px" height="28px" alt="Instagram">
+                    </a>
+                    <!-- иконка instagram для перехода -->
+                </div>
+            </div>
+        </div>
+        <!-- навигация для быстрого перехода по разделам, с иконками -->
+        <nav>
+            <div class="hamburger">
+                <!-- кнопка гамбургер-меню для мобильной версии -->
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-links">
+                <!-- список ссылок для навигации по сайту -->
+                <a href="#about"><i class="fas fa-users"></i> О Нас</a>
+                <a href="#price"><i class="fas fa-book"></i> Каталог</a>
+                <a href="#contact"><i class="fas fa-comments"></i> Обратная Связь</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- баннер с текстом и кнопками, занимает центральное место -->
+    <div class="banner">
+        <div class="banner-content">
+            <!-- основной текст и заголовок баннера -->
+            Лечебная Терапия
+            <h1>Мануальная Терапия</h1>
+            Профессиональный подход, внимание к каждому клиенту и быстрые результаты — вот что мы гарантируем. Начните заботиться о своем теле уже сегодня!
+            <div class="btn-content">
+                <!-- контейнер для кнопок действия -->
+                <a class="button" href="#price">Каталог</a>
+                <!-- основная кнопка для перехода к каталогу -->
+                <a class="button-passive" href="#contact">Обратная Связь</a>
+                <!-- вторичная кнопка для связи -->
+            </div>
+        </div>
+        <img src="img/banner.png" alt="баннер мануальной терапии" class="parallax-img">
+        <!-- изображение с эффектом параллакса -->
+    </div>
+
+    <!-- секция о нас с текстом и фото, рассказывает о команде -->
+    <div class="about-us" id="about">
+        <div class="section-spacer"></div>
+        <!-- разделитель для плавного перехода между секциями -->
+        <img src="img/2150911764.jpg" alt="Наши Специалисты" height="666px" class="fade-in">
+        <!-- фото команды с эффектом появления -->
+        <div class="about-content">
+            <div class="banner-content">
+                <!-- текстовая часть с заголовком -->
+                О Нас
+                <h1>Наши Специалисты</h1>
+                Мануальные терапевты используют различные техники, такие как мягкие мануальные воздействия, мобилизация и манипуляция суставов, что позволяет не только уменьшить болевые ощущения, но и ускорить восстановление после травм или операций.
+            </div>
+        </div>
+    </div>
+
+    <!-- каталог с карточками услуг, отображает все предложения -->
+    <div class="price" id="price">
+        <div class="section-spacer"></div>
+        <!-- разделитель для плавного перехода -->
+        <h1>Каталог</h1>
+        <!-- заголовок секции -->
+        <div class="parent-container">
+            <!-- общий контейнер для сетки карточек -->
+            <div class="group-470">
+                <!-- сетка для карточек услуг -->
+                <div class="service-card">
+                    <img class="service-image" src="img/2149146136.jpg" alt="Классика">
+                    <!-- изображение для каждой услуги -->
+                    <div class="service-overlay">
+                        <!-- оверлей с описанием услуги -->
+                        <h3>Классика</h3>
+                        <p>Традиционный массаж для снятия напряжения и улучшения кровообращения.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img class="service-image" src="img/2149159109.jpg" alt="Шиацу">
+                    <div class="service-overlay">
+                        <h3>Шиацу</h3>
+                        <p>Японская техника давления на точки для восстановления энергии.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img class="service-image" src="img/2148789808.jpg" alt="Лимфодренаж">
+                    <div class="service-overlay">
+                        <h3>Лимфодренаж</h3>
+                        <p>Процедура для улучшения лимфатического оттока и детоксикации.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img class="service-image" src="img/43648.jpg" alt="Точечный Массаж">
+                    <div class="service-overlay">
+                        <h3>Точечный Массаж</h3>
+                        <p>Терапия с воздействием на конкретные точки для снятия боли.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img class="service-image" src="img/2149159141.jpg" alt="Релакс">
+                    <div class="service-overlay">
+                        <h3>Релакс</h3>
+                        <p>Успокаивающий массаж для полного расслабления тела и ума.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- секция почему мы с тремя блоками преимуществ -->
+    <div class="why">
+        <h1>Почему Мы?</h1>
+        <!-- заголовок секции с преимуществами -->
+        <div class="plus">
+            <!-- контейнер для трёх блоков преимуществ -->
+            <div class="first scale-on-scroll" style="background-image: url('img/01.png');">
+                <h4>Снижение Болевого Синдрома</h4>
+                <!-- заголовок первого преимущества -->
+                <p>Мануальная терапия эффективно устраняет боли в спине, шее и суставах благодаря улучшению кровообращения и снятию напряжения.</p>
+                <!-- описание преимущества -->
+            </div>
+            <div class="second scale-on-scroll" style="background-image: url('img/02.png');">
+                <h4>Улучшение Гибкости</h4>
+                <p>Техники терапии повышают подвижность суставов и нормализуют тонус организма.</p>
+            </div>
+            <div class="third scale-on-scroll" style="background-image: url('img/03.png');">
+                <h4>Комплексное Оздоровление</h4>
+                <p>Методы помогают восстановлению после травм и улучшают общее самочувствие.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- форма для обратной связи с полями ввода -->
+    <div class="contact" id="contact">
+        <div class="section-spacer"></div>
+        <!-- разделитель для плавного перехода -->
+        <form>
+            <!-- контейнер для формы обратной связи -->
+            <h1 style="font-size: 35px;">Закажите Обратный Звонок</h1>
+            <!-- заголовок формы -->
+            Отправьте заявку, и наш менеджер вам перезвонит
+            <div class="form">
+                <!-- поля для ввода данных -->
+                <input type="text" placeholder="Ваше Имя">
+                <input type="text" placeholder="Ваш Номер">
+            </div>
+            <div class="button">Отправить</div>
+            <!-- кнопка для отправки формы -->
+        </form>
+    </div>
+
+    <!-- футер с контактами и навигацией -->
+    <footer>
+        <div class="footer-container">
+            <!-- основной контейнер футера с разделами -->
+            <div class="footer-logo">
+                <!-- блок с логотипом -->
+                <a href="#top" class="title-link">
+                    <p>Мануальная Терапия</p>
+                </a>
+            </div>
+            <div class="footer-contact">
+                <!-- блок с контактной информацией -->
+                <h4>Контакты</h4>
+                <a href="tel:+79885998751" class="phone-link">
+                    <i class="fas fa-phone"></i> +7 (988) 599-87-51
+                </a>
+            </div>
+            <div class="footer-social">
+                <!-- блок с ссылками на соцсети -->
+                <h4>Мы в Соцсетях</h4>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/yourpage" class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/yourprofile" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-nav">
+                <!-- блок с навигацией по разделам -->
+                <h4>Навигация</h4>
+                <div class="nav-links">
+                    <a href="#about">О Нас</a>
+                    <a href="#price">Каталог</a>
+                    <a href="#contact">Обратная Связь</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <!-- нижняя часть футера с копирайтом -->
+            <p>© 2025 Мануальная Терапия. Все права защищены.</p>
+            <a href="#top" class="scroll-top">
+                <i class="fas fa-arrow-up"></i> Наверх
+            </a>
+            <!-- кнопка для возврата к началу страницы -->
+        </div>
+    </footer>
+
+    <script>
+        // плавный скролл по якорным ссылкам
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('header').classList.contains('scrolled') ? 60 : 100;
+                    const offsetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight - 20;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // гамбургер-меню для мобильных экранов с анимацией крестика
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        hamburger.addEventListener('click', function () {
+            navLinks.classList.toggle('active');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // изменение стиля хедера при скролле
+        window.addEventListener('scroll', function() {
+            var header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            // эффект масштабирования для секции "почему мы"
+            document.querySelectorAll('.scale-on-scroll').forEach(element => {
+                const rect = element.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+
+            // эффект параллакса для баннера
+            const parallaxImg = document.querySelector('.parallax-img');
+            if (parallaxImg) {
+                const scrolled = window.scrollY;
+                parallaxImg.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+
+        // переключение видимости контактов
+        document.querySelectorAll('.contact-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const details = this.nextElementSibling;
+                details.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
