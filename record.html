@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Maнуальная терапия</title>
+</head>
+<body>
+    <header>
+        <div class="title">
+            <p>МАНУАЛЬНАЯ ТЕРАПИЯ</p>
+            <div class="link">
+                <div class="num">
+                    <img src="img\Иконка телефон.png" width="28px" height="28px">
+                    +7xxxxxxxxxx
+                </div>
+                <img src="img\соц сети.png"  width="83px" height="28px">
+            </div>
+        </div>
+        <hr>
+        <nav>
+            <a href="index.html#about">О нас</a>
+            <a href="index.html#price">Каталог</a>
+            <a href="index.html#contact">Обратная связь</a>
+        </nav>
+    </header>
+
+    <div class="record">
+        <h1 style="font-size: 30px;">Запись</h1>
+        <div class="record-content">
+            <div class="record-contact">
+                <h4>Контактная информация</h4>
+                <div class="form">
+                    <label for="">Имя</label><br>
+                    <input type="text" placeholder="Иван"><br>
+                    <label for="">Отчество</label><br>
+                    <input type="text" placeholder="Иванович"><br>
+                    <label for="">Email</label><br>
+                    <input type="email" placeholder="example@mail.ru"><br>
+                    <label for="message">Сообщение</label><br>
+                    <textarea id="message" class="message" placeholder="Ваши предпочтения" rows="5" cols="40"></textarea>
+                </div>
+            </div>
+
+            <div class="block">
+                <div class="record-calendar">
+                <h4>Выберите дату</h4>
+                <div class="calendar">
+                    <head>
+                        <p id="month-year"></p>
+                    </head>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Пн</th>
+                                <th>Вт</th>
+                                <th>Ср</th>
+                                <th>Чт</th>
+                                <th>Пт</th>
+                                <th>Сб</th>
+                                <th>Вс</th>
+                            </tr>
+                        </thead>
+                        <tbody id="calendar-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+                <div class="record-time">
+                    <h4>Выберите время</h4>
+                    <div class="time">
+                        <button class="time-btn">09:00</button>
+                        <button class="time-btn">10:00</button>
+                        <button class="time-btn">11:00</button>
+                        <button class="time-btn">12:00</button>
+                        <button class="time-btn">13:00</button>
+                        <button class="time-btn">14:00</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="button" style="margin: 30px; padding-right: 20px; padding-left: 20px;">Отправить</div>
+    </div>
+
+    
+    <footer>
+        <div class="title" style="   color: #ffffff;">
+            <p>МАНУАЛЬНАЯ ТЕРАПИЯ</p>
+            <div class="link">
+                <div class="num">
+                    <img src="img\Иконка телефон.png" width="28px" height="28px">
+                    +7xxxxxxxxxx
+                </div>
+                <img src="img\соц сети.png"  width="83px" height="28px">
+            </div>
+    </footer>
+    <script>
+        const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+const weekdays = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
+
+let currentDate = new Date();
+let currentMonth = currentDate.getMonth();
+let currentYear = currentDate.getFullYear();
+let selectedDates = new Set(); // Хранит выбранные даты
+
+function renderCalendar(month, year) {
+    const monthYearText = `${monthNames[month]} ${year}`;
+    document.getElementById('month-year').innerText = monthYearText;
+
+    const firstDayOfMonth = new Date(year, month, 1).getDay();
+    const lastDateOfMonth = new Date(year, month + 1, 0).getDate();
+    
+    const calendarBody = document.getElementById('calendar-body');
+    calendarBody.innerHTML = '';
+
+    let row = document.createElement('tr');
+    
+    // Adjust first day of the month (Sunday to Saturday)
+    let dayOfWeek = firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1;
+    
+    // Add empty cells before the first day of the month
+    for (let i = 0; i < dayOfWeek; i++) {
+        row.appendChild(document.createElement('td'));
+    }
+
+    // Add day numbers
+    for (let day = 1; day <= lastDateOfMonth; day++) {
+        if (dayOfWeek === 7) {
+            calendarBody.appendChild(row);
+            row = document.createElement('tr');
+            dayOfWeek = 0;
+        }
+
+        const cell = document.createElement('td');
+        cell.innerText = day;
+
+        // Highlight today's date
+        if (day === currentDate.getDate() && month === currentMonth && year === currentYear) {
+            cell.classList.add('today');
+        }
+
+        // Check if the date is selected
+        if (selectedDates.has(day)) {
+            cell.classList.add('selected');
+        }
+
+        // Add click event to mark/unmark the date
+        cell.addEventListener('click', () => toggleDateSelection(day));
+
+        row.appendChild(cell);
+        dayOfWeek++;
+    }
+
+    // Add the last row if needed
+    if (dayOfWeek !== 7) {
+        calendarBody.appendChild(row);
+    }
+}
+
+function changeMonth(direction) {
+    currentMonth += direction;
+
+    if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
+    } else if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+    }
+
+    renderCalendar(currentMonth, currentYear);
+}
+
+function toggleDateSelection(day) {
+    if (selectedDates.has(day)) {
+        selectedDates.delete(day);  // Unselect the date
+    } else {
+        selectedDates.add(day);  // Select the date
+    }
+    renderCalendar(currentMonth, currentYear);  // Re-render the calendar to reflect the changes
+}
+
+// Initial render
+renderCalendar(currentMonth, currentYear);
+
+    // Находим все кнопки
+const buttons = document.querySelectorAll('.time-btn');
+
+// Добавляем обработчик клика для каждой кнопки
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Переключаем класс "selected" для кнопки
+        button.classList.toggle('selected');
+    });
+});
+
+    </script>
+</body>
+</html>
