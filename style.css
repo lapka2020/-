@@ -1,0 +1,1054 @@
+/* плавный скролл для всей страницы */
+html {
+    scroll-behavior: smooth;
+}
+
+/* основа страницы без лишних отступов, задаёт начальные стили */
+body {
+    font-family: 'montserrat', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    padding-top: 120px;
+}
+
+/* хедер с градиентом, всегда на виду, фиксируется сверху */
+header {
+    background: linear-gradient(180deg, #ecffeb 0%, #ffffff 100%);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* заголовок с лого и контактами, управляет расположением элементов */
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    border-radius: 0 0 10px 10px;
+}
+
+.title-link {
+    text-decoration: none;
+    /* ссылка без подчёркивания */
+}
+
+/* лого с градиентом и анимацией, основной визуальный акцент */
+.title p {
+    font-family: 'montserrat', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #55a630, #8bc34a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    animation: glow 2s ease-in-out infinite alternate;
+    margin: 0;
+    transition: font-size 0.3s ease;
+}
+
+/* анимация свечения для текста, добавляет динамику */
+@keyframes glow {
+    from {
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    }
+    to {
+        text-shadow: 2px 2px 5px rgba(85, 166, 48, 0.4);
+    }
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    /* горизонтальное расположение контактов */
+}
+
+.contact-toggle {
+    display: none;
+    font-size: 20px;
+    color: #55a630;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 10px;
+    /* скрытая кнопка для мобильной версии */
+}
+
+.contact-details {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    transition: opacity 0.3s ease;
+    /* список контактов с плавной анимацией */
+}
+
+/* номер телефона с иконкой, стили для кликабельности */
+.phone-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    transition: color 0.3s, font-size 0.3s;
+}
+
+.phone-link:hover {
+    color: #55a630;
+    text-decoration: underline;
+}
+
+.phone-link img {
+    margin-right: 8px;
+    width: 24px;
+    height: 24px;
+    transition: width 0.3s, height 0.3s;
+    /* иконка телефона с анимацией изменения размера */
+}
+
+.social-icon img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s, width 0.3s, height 0.3s;
+    /* иконки соцсетей с анимацией масштабирования */
+}
+
+.social-icon:hover img {
+    transform: scale(1.1);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+/* навигация с ссылками, управляет перемещением по сайту */
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 10px 20px;
+    transition: padding 0.3s ease, height 0.3s ease;
+}
+
+.hamburger {
+    display: none;
+    font-size: 20px;
+    color: #55a630;
+    cursor: pointer;
+    padding: 5px;
+    /* кнопка гамбургер для мобильного меню */
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    /* горизонтальное меню с равными интервалами */
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    padding: 8px 15px;
+    border-radius: 5px;
+    position: relative;
+    transition: all 0.3s ease;
+    animation: fadeInNav 0.5s ease-in forwards;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav a:nth-child(1) { animation-delay: 0.1s; }
+nav a:nth-child(2) { animation-delay: 0.2s; }
+nav a:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes fadeInNav {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+nav a i {
+    margin-right: 8px;
+    color: #55a630;
+    transition: color 0.3s ease;
+    /* иконки для каждой ссылки с анимацией */
+}
+
+nav a:hover {
+    color: #fff;
+    background: linear-gradient(90deg, #55a630, #8bc34a);
+    box-shadow: 0 2px 8px rgba(85, 166, 48, 0.3);
+    transform: scale(1.05);
+}
+
+nav a:hover i {
+    color: #fff;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #55a630;
+    bottom: 0;
+    left: 50%;
+    transition: all 0.3s ease;
+    /* подчёркивание ссылки при наведении */
+}
+
+nav a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* стили хедера при скролле, адаптация размера */
+header.scrolled {
+    padding: 5px 0;
+}
+
+header.scrolled .title {
+    padding: 10px 20px;
+}
+
+header.scrolled .title p {
+    font-size: 28px;
+}
+
+header.scrolled .contact-details {
+    opacity: 0.8;
+}
+
+header.scrolled .phone-link img,
+header.scrolled .social-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+header.scrolled .phone-link span {
+    font-size: 14px;
+}
+
+header.scrolled nav {
+    padding: 5px 20px;
+}
+
+header.scrolled nav a {
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+/* каталог с карточками услуг, основной контент сайта */
+.price {
+    padding: 40px 20px;
+    background: #f9f9f9;
+}
+
+.price h1 {
+    text-align: center;
+    padding: 25px 0;
+    color: #55a630;
+    font-size: 48px;
+    position: relative;
+    z-index: 1;
+    /* заголовок с акцентным цветом */
+}
+
+/* спейсер для перехода между секциями, смягчает смену фона */
+.section-spacer {
+    height: 100px;
+    background: linear-gradient(to bottom, #ecffeb, #f9f9f9);
+    margin-bottom: -80px;
+}
+
+.parent-container {
+    display: flex;
+    justify-content: center;
+    /* центрирует сетку карточек */
+}
+
+.group-470 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    padding: 20px;
+    /* сетка для размещения карточек услуг */
+}
+
+.service-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    /* карточка с эффектом при наведении */
+}
+
+.service-card:hover {
+    transform: scale(1.05);
+}
+
+.service-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    /* изображение внутри карточки */
+}
+
+.service-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    color: #fff;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    /* оверлей с текстом при наведении */
+}
+
+.service-card:hover .service-overlay {
+    opacity: 1;
+}
+
+.service-overlay h3 {
+    font-size: 24px;
+    margin: 0 0 10px;
+    color: #55a630;
+    /* заголовок услуги в оверлее */
+}
+
+.service-overlay p {
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.5;
+    /* описание услуги в оверлее */
+}
+
+/* баннер с текстом и изображением, центральный элемент */
+.banner {
+    background: #ecffeb;
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+    align-items: center;
+    margin-top: 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-content {
+    max-width: 500px;
+    font-size: 20px;
+    margin: 0 20px;
+    animation: fadeIn 1s ease-in;
+    /* текстовая часть с анимацией появления */
+}
+
+h1 {
+    color: #55a630;
+    font-size: 70px;
+    margin: 0 0 20px;
+    line-height: 1.1;
+    /* основной заголовок с акцентом */
+}
+
+.btn-content {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+    /* контейнер для размещения кнопок */
+}
+
+/* кнопки для перехода по разделам, с интерактивностью */
+.button, .button-passive {
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.button {
+    color: #fff;
+    background-color: #55a630;
+    border: 3px solid #55a630;
+}
+
+.button-passive {
+    color: #55a630;
+    border: 3px solid #55a630;
+}
+
+.button:hover {
+    background-color: #5b9242;
+    border-color: #5b9242;
+    transform: translateY(-3px);
+}
+
+.button-passive:hover {
+    background-color: #5b9242;
+    color: #fff;
+    border-color: #5b9242;
+    transform: translateY(-3px);
+}
+
+.about-us {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 60px 20px;
+    background: #f9f9f9;
+    /* секция с информацией о команде */
+}
+
+.about-us img {
+    max-height: 666px;
+    object-fit: cover;
+    /* изображение команды с ограничением высоты */
+}
+
+.why {
+    padding: 40px 20px;
+    /* секция с преимуществами, задаёт отступы */
+}
+
+.why h1 {
+    text-align: center;
+    padding: 25px 0;
+    /* заголовок секции, выравнивание по центру */
+}
+
+.plus {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 0 20px;
+    /* контейнер для трёх блоков преимуществ */
+}
+
+.first, .second, .third {
+    background-size: cover;
+    padding: 20px;
+    box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.274);
+    max-width: 400px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    /* стили для каждого блока преимуществ */
+}
+
+.first:hover, .second:hover, .third:hover {
+    transform: translateY(-10px);
+}
+
+.contact {
+    padding: 60px 20px;
+    /* секция с формой обратной связи, задаёт отступы */
+}
+
+/* форма для обратной связи с полями ввода */
+.contact form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.274);
+    background: #fff;
+    border-radius: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form input {
+    width: 300px;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    /* поля ввода с анимацией фокуса */
+}
+
+.form input:focus {
+    border-color: #55a630;
+    outline: none;
+}
+
+/* футер с контактами и ссылками, нижняя часть сайта */
+footer {
+    background: linear-gradient(180deg, #2a3d2a 0%, #1a2a1a 100%);
+    padding: 40px 20px;
+    color: #fff;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    /* основной контейнер с разделами футера */
+}
+
+.footer-logo .title-link p {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #55a630, #8bc34a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    animation: glow 2s ease-in-out infinite alternate;
+    margin: 0;
+    transition: font-size 0.3s ease;
+    /* логотип футера с градиентом */
+}
+
+.footer-contact h4,
+.footer-social h4,
+.footer-nav h4 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #8bc34a;
+    /* заголовки разделов футера */
+}
+
+.footer-contact a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+    /* ссылка на телефон с иконкой */
+}
+
+.footer-contact a:hover {
+    color: #55a630;
+}
+
+.footer-social .social-links {
+    display: flex;
+    gap: 15px;
+    /* контейнер для иконок соцсетей */
+}
+
+.footer-social .social-icon {
+    color: #fff;
+    font-size: 20px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    /* иконки соцсетей с анимацией */
+}
+
+.footer-social .social-icon:hover {
+    transform: scale(1.2);
+    color: #55a630;
+}
+
+.footer-nav .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* вертикальный список ссылок навигации */
+}
+
+.footer-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    /* ссылки навигации */
+}
+
+.footer-nav a:hover {
+    color: #55a630;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 20px auto 0;
+    font-size: 14px;
+    /* нижняя часть футера с копирайтом */
+}
+
+/* кнопка для возврата наверх, с анимацией при наведении */
+.scroll-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #55a630;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 15px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.scroll-top:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+    /* анимация появления элементов */
+}
+
+/* эффект появления для изображений */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+/* эффект масштабирования для блоков "почему мы" */
+.scale-on-scroll {
+    transform: scale(0.9);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.scale-on-scroll.visible {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* улучшенная адаптация для мобильных экранов */
+@media (max-width: 768px) {
+    /* хедер с полупрозрачным фоном */
+    header {
+        padding: 8px 0;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 3px 20px rgba(0, 0, 0, 0.25);
+        /* белый фон с глубокой тенью */
+    }
+
+    /* блок с лого и контактами, всё в колонку */
+    .title {
+        flex-direction: column;
+        gap: 12px;
+        padding: 8px 12px;
+    }
+
+    /* лого уменьшено, но читаемо */
+    .title p {
+        font-size: 26px;
+        line-height: 1.2;
+    }
+
+    /* кнопка контактов с анимацией */
+    .contact-toggle {
+        display: block;
+        font-size: 28px;
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .contact-toggle:hover {
+        transform: rotate(360deg);
+        color: #8bc34a;
+    }
+
+    /* контакты в выпадашке с полупрозрачным фоном */
+    .contact-details {
+        display: none;
+        flex-direction: column;
+        gap: 15px;
+        position: absolute;
+        top: 100%;
+        right: 12px;
+        background: rgba(236, 255, 235, 0.9);
+        backdrop-filter: blur(5px);
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        width: 220px;
+    }
+
+    .contact-details.active {
+        display: flex;
+        animation: slideIn 0.4s ease forwards;
+    }
+
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateY(-15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* номер телефона с крупной иконкой */
+    .phone-link {
+        font-size: 16px;
+        gap: 12px;
+    }
+
+    .phone-link img {
+        width: 32px;
+        height: 32px;
+    }
+
+    /* иконки соцсетей крупнее */
+    .social-icon img {
+        width: 32px;
+        height: 32px;
+    }
+
+    /* кнопка гамбургер с анимацией крестика */
+    .hamburger {
+        display: block;
+        font-size: 30px;
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .hamburger:hover {
+        transform: scale(1.15);
+        color: #8bc34a;
+    }
+
+    .hamburger i.fa-times {
+        color: #ff6b6b;
+        /* красный крестик при открытом меню */
+    }
+
+    /* навигация в выпадающем меню с полупрозрачным фоном */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 25px;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(5px);
+        padding: 25px 0;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        border-radius: 0 0 15px 15px;
+    }
+
+    .nav-links.active {
+        display: flex;
+        animation: slideDown 0.4s ease forwards;
+    }
+
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-25px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ссылки навигации с крупным шрифтом и эффектом */
+    nav a {
+        text-align: center;
+        font-size: 20px;
+        padding: 15px;
+        border-bottom: 2px solid rgba(85, 166, 48, 0.3);
+        transition: background 0.3s ease;
+    }
+
+    nav a:hover {
+        background: rgba(85, 166, 48, 0.1);
+    }
+
+    nav a i {
+        font-size: 22px;
+        margin-right: 12px;
+    }
+
+    /* баннер с эффектом параллакса */
+    .banner {
+        flex-direction: column;
+        padding: 15px 8px;
+        text-align: center;
+        background: linear-gradient(180deg, #ecffeb, #d0f0c0);
+    }
+
+    /* текст баннера с улучшенным фоном */
+    .banner-content {
+        font-size: 16px;
+        margin: 10px 0;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+        font-size: 34px;
+        line-height: 1.2;
+    }
+
+    /* изображение баннера с параллаксом */
+    .banner .parallax-img {
+        width: 100%;
+        height: auto;
+        max-height: 280px;
+        object-fit: cover;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* кнопки баннера с градиентом */
+    .btn-content {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 25px;
+    }
+
+    .button, .button-passive {
+        padding: 14px 35px;
+        font-size: 16px;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .button {
+        background: linear-gradient(90deg, #55a630, #8bc34a);
+    }
+
+    .button-passive {
+        background: transparent;
+        border: 3px solid #55a630;
+    }
+
+    .button:hover, .button-passive:hover {
+        transform: scale(1.05);
+        background: linear-gradient(90deg, #5b9242, #9bd151);
+    }
+
+    /* каталог с улучшенными карточками */
+    .group-470 {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 15px;
+    }
+
+    /* карточки услуг с градиентом и подсветкой */
+    .service-card {
+        border-radius: 20px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .service-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 30px rgba(85, 166, 48, 0.3);
+    }
+
+    /* изображение карточки с закруглением */
+    .service-image {
+        height: 180px;
+        border-radius: 20px 20px 0 0;
+    }
+
+    /* оверлей с градиентом */
+    .service-overlay {
+        padding: 15px;
+        background: linear-gradient(to top, rgba(85, 166, 48, 0.9), transparent);
+    }
+
+    .service-overlay h3 {
+        font-size: 22px;
+    }
+
+    .service-overlay p {
+        font-size: 14px;
+    }
+
+    /* разделитель секций уменьшен */
+    .section-spacer {
+        height: 30px;
+        margin-bottom: -15px;
+    }
+
+    /* секция о нас с улучшенным текстом */
+    .about-us {
+        flex-direction: column;
+        padding: 15px 8px;
+        text-align: center;
+        gap: 25px;
+    }
+
+    /* изображение секции с эффектом появления */
+    .about-us img.fade-in {
+        width: 100%;
+        height: auto;
+        max-height: 380px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* текст секции с градиентным фоном */
+    .about-content .banner-content {
+        font-size: 16px;
+        padding: 20px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(236, 255, 235, 0.7));
+        border-radius: 15px;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* секция почему мы с градиентной рамкой */
+    .plus {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    /* блоки преимуществ с эффектом */
+    .first, .second, .third {
+        max-width: 100%;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+        border: 2px solid transparent;
+        background-clip: padding-box;
+        position: relative;
+    }
+
+    .first::before, .second::before, .third::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border-radius: 20px;
+        background: linear-gradient(45deg, #55a630, #8bc34a);
+        z-index: -1;
+    }
+
+    .first h4, .second h4, .third h4 {
+        font-size: 20px;
+    }
+
+    .first p, .second p, .third p {
+        font-size: 14px;
+    }
+
+    /* форма с улучшенным дизайном */
+    .contact form {
+        padding: 20px 12px;
+        border-radius: 25px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* поля формы с градиентной границей */
+    .form input {
+        width: 100%;
+        padding: 16px;
+        font-size: 16px;
+        border-radius: 15px;
+        border: 2px solid #ccc;
+        transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form input:focus {
+        border: 2px solid transparent;
+        background: linear-gradient(white, white) padding-box, linear-gradient(45deg, #55a630, #8bc34a) border-box;
+        box-shadow: 0 0 12px rgba(85, 166, 48, 0.4);
+    }
+
+    /* кнопка формы с пульсацией */
+    .contact .button {
+        padding: 16px 45px;
+        font-size: 16px;
+        border-radius: 15px;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .contact .button::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .contact .button:hover::before {
+        width: 300px;
+        height: 300px;
+    }
+
+    .contact .button:hover {
+        transform: scale(1.05);
+    }
+
+    /* футер с улучшенными иконками */
+    .footer-container {
+        flex-direction: column;
+        gap: 35px;
+        text-align: center;
+    }
+
+    /* иконки соцсетей с вращением */
+    .footer-social .social-links {
+        justify-content: center;
+        gap: 25px;
+    }
+
+    .footer-social .social-icon {
+        font-size: 30px;
+        transition: transform 0.5s ease, color 0.3s ease;
+    }
+
+    .footer-social .social-icon:hover {
+        transform: rotate(360deg);
+        color: #8bc34a;
+    }
+
+    /* копирайт и кнопка наверх с градиентом */
+    .footer-bottom {
+        flex-direction: column;
+        gap: 25px;
+        text-align: center;
+    }
+
+    .footer-bottom p {
+        font-size: 14px;
+        padding: 10px 20px;
+        background: linear-gradient(90deg, rgba(85, 166, 48, 0.2), rgba(139, 195, 74, 0.2));
+        border-radius: 10px;
+    }
+
+    .scroll-top {
+        padding: 14px 25px;
+        font-size: 16px;
+        border-radius: 15px;
+        background: linear-gradient(90deg, #55a630, #8bc34a);
+        color: #fff;
+    }
+
+    .scroll-top:hover {
+        background: linear-gradient(90deg, #5b9242, #9bd151);
+    }
+}
